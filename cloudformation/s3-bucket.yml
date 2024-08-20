@@ -18,7 +18,7 @@ resources:
     Tages:
       - Key: Environment
         Value: !Ref Enviroment
-      - key: Environment
+      - key: Project
         value: GithubActionsTesting 
 
   Outpost:
