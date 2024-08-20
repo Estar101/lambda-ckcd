@@ -5,13 +5,18 @@ on:
     branches:
       - main
     paths:
-      - "lambda/"
+      - "lambda/**"
 
 jobs:
   deploy-lambda:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: List Lambda Directory
+      run: ls -la lambda
 
     - name: Set up Python
       uses: actions/setup-python@v2
