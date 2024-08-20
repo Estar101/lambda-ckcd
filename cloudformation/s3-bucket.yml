@@ -1,0 +1,27 @@
+AwsTemplateFormatVersion: "2010-09-09"
+Description: "S3 bucket for our CICD PR"
+
+Parameters:
+  Environment:
+    Type: String
+    Default: test
+    AllowedValues:
+      - test
+      - staging
+      - production
+
+resources:
+  MyS3Bucket:
+    Type: "AWS::S3::Bucket"
+    properties:
+      BucketNam: !Sub "${AWS::StackName}-${Enviroment}-bucke"
+    Tages:
+      - Key: Environment
+        Value: !Ref Enviroment
+      - key: Environment
+        value: GithubActionsTesting 
+
+  Outpost:
+    BucketName:
+      Description: "Name of created S3 Bucket"
+      Value: !Ref MyS3Bucket
