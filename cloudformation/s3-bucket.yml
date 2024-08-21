@@ -1,4 +1,4 @@
-AwsTemplateFormatVersion: "2010-09-09"
+AWSTemplateFormatVersion: "2010-09-09"
 Description: "S3 bucket for our CICD PR"
 
 Parameters:
@@ -10,18 +10,18 @@ Parameters:
       - staging
       - production
 
-resources:
+Resources:
   MyS3Bucket:
     Type: "AWS::S3::Bucket"
-    properties:
-      BucketNam: !Sub "${AWS::StackName}-${Enviroment}-bucke"
-    Tages:
-      - Key: Environment
-        Value: !Ref Enviroment
-      - key: Environment
-        value: GithubActionsTesting 
+    Properties:
+      BucketName: !Sub "${AWS::StackName}-${Environment}-bucket"
+      Tags:
+        - Key: Environment
+          Value: !Ref Environment
+        - Key: Project
+          Value: GithubActionsTesting
 
-  Outpost:
-    BucketName:
-      Description: "Name of created S3 Bucket"
-      Value: !Ref MyS3Bucket
+Outputs:
+  BucketName:
+    Description: "Name of the created S3 Bucket"
+    Value: !Ref MyS3Bucket
